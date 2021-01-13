@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Image } from 'cloudinary-react';
+import {APIgetImages} from "../api/imagesAPI"
 
 export default function Gallery() {
     const [imageIds, setImageIds] = useState();
 
     const loadImages = async () => {
         try {
-            const res = await fetch('/api/images');
-            const data = await res.json();
-            setImageIds(data);
+            let images = await APIgetImages(); 
+            setImageIds(images); 
         } catch (err) {
             console.error(err);
         }
@@ -20,7 +20,7 @@ export default function Gallery() {
     
     return (
         <div>
-            <h1 className="title">Cloudinary Gallery</h1>
+            <h1 className="title">Gallery</h1>
             <div className="gallery">
                 {imageIds &&
                     imageIds.map((imageId, index) => (

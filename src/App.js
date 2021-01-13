@@ -5,6 +5,7 @@ import Upload from './pages/Upload.js';
 import Gallery from './pages/Gallery.js';
 
 function App() {
+  
     return (
         <div className="container">
             <Router>
