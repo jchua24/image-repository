@@ -57,6 +57,7 @@ export default function Upload() {
         } catch (err) {
             console.error(err);
             setErrMsg('Unable to upload file. Please try again!');
+            setLoading(false);
         }
        
     };
