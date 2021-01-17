@@ -6,16 +6,15 @@ require('dotenv').config({path: __dirname + '/../.env'})
 
 const {cloudinary} = require('./utils/cloudinary')
 
-app.use(express.static(path.join(__dirname, 'build')));
+const port = process.env.PORT || 5000;
+const buildPath = path.join(__dirname, '..', 'build');
+
+app.use(express.static(buildPath));
 
 //allows for the parsing of request bodies 
 app.use(express.json({limit: '50mb'}))
 app.use(express.urlencoded({limit: '50mb', extended: true}))
 
-
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
 
 // a GET route to get all images
 app.get("/api/images", async (req, res) => {
@@ -50,7 +49,6 @@ app.post("/api/upload", async (req, res) => {
 })
 
 
-const port = process.env.PORT || 8080
 app.listen(port, () => {
     console.log(`listening on port ${port}`)
 });
